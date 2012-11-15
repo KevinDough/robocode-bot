@@ -20,17 +20,11 @@ public class Spiny extends AdvancedRobot
 		// and the next line:
 
 		 setColors(Color.black,Color.white,Color.white); // body,gun,radar
-		
+		turnGunLeft(90);
 		// Robot main loop
 		while(true) {
-			// Tell the game that when we take move,
-			// we'll also want to turn right... a lot.
-			setTurnRight(10000);
-			// Limit our speed to 5
-			setMaxVelocity(5);
-			// Start moving (and turning)
-			ahead(10000);
-			// Repeat.
+			move();
+			
 		}
 	}
 
@@ -56,19 +50,13 @@ public class Spiny extends AdvancedRobot
 	 */
 	public void onHitWall(HitWallEvent e) {
 		// Replace the next line with any behavior you would like
-		back(50);
+		back(80);
 	}	
 	public void onHitRobot(HitRobotEvent e){
 
 			if (boink == 0){
-				setTurnRight(10000);
-				setMaxVelocity(10);
-				back(10000);
 				boink = 1;
 			} else{
-				setTurnRight(10000);
-				setMaxVelocity(5);
-				ahead(10000);
 				boink = 0;
 			}
 			
@@ -87,5 +75,22 @@ public class Spiny extends AdvancedRobot
 			fire(1);
 		}
 	}
-}
-								
+	public void move()
+	{
+			if (boink == 0){
+				
+			//	turnGunRight(180);
+				setTurnRight(10000);
+				setMaxVelocity(7);
+				back(10000);
+				boink = 1;
+			} else{
+				//turnGunRight(180);
+				setTurnRight(10000);
+				setMaxVelocity(5);
+				ahead(10000);
+				boink = 0;
+			}
+	}
+}				
+					
